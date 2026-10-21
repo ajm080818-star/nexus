@@ -1,0 +1,1090 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Technologies - IT 솔루션</title>
+    <style>
+        /* ===== 기본 설정 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* ===== 페이지 표시/숨김 ===== */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ===== 상단 네비게이션 바 ===== */
+        header {
+            background-color: #0052CC;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a, .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        .admin-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .logout-btn {
+            background-color: #FF6B6B;
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #FF5252;
+        }
+
+        .admin-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* ===== 메인 히어로 섹션 ===== */
+        .hero {
+            background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: #0052CC;
+            padding: 15px 40px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== 주요 서비스 카드 섹션 ===== */
+        .services {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #0052CC;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 82, 204, 0.2);
+        }
+
+        .service-card h3 {
+            color: #0052CC;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .service-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 회사 소개 섹션 ===== */
+        .about {
+            background-color: #F5F5F5;
+            padding: 60px 20px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #0052CC;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #0052CC 0%, #003D99 100%);
+            height: 300px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* ===== 문의 양식 섹션 ===== */
+        .inquiry {
+            background-color: white;
+            padding: 60px 20px;
+            min-height: 600px;
+        }
+
+        .inquiry-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .inquiry h2 {
+            color: #0052CC;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0052CC;
+            box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #0052CC;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #003D99;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* ===== 로그인 페이지 ===== */
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #0052CC;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-form input {
+            padding: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #0052CC;
+        }
+
+        .login-btn {
+            background-color: #0052CC;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #003D99;
+        }
+
+        .login-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 관리자 대시보드 ===== */
+        .admin-dashboard {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            min-height: 600px;
+        }
+
+        .dashboard-title {
+            color: #0052CC;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .inquiry-list {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .inquiry-item {
+            border-bottom: 1px solid #E0E0E0;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .inquiry-item:hover {
+            background-color: #F5F5F5;
+        }
+
+        .inquiry-item:last-child {
+            border-bottom: none;
+        }
+
+        .inquiry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .inquiry-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0052CC;
+        }
+
+        .inquiry-date {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .inquiry-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .inquiry-preview {
+            color: #555;
+            font-size: 14px;
+            max-height: 50px;
+            overflow: hidden;
+        }
+
+        .inquiry-detail {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #0052CC;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .detail-content {
+            color: #555;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .reply-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .reply-form h3 {
+            color: #0052CC;
+            margin-bottom: 20px;
+        }
+
+        .reply-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E0E0E0;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+            min-height: 150px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .reply-textarea:focus {
+            outline: none;
+            border-color: #0052CC;
+        }
+
+        .reply-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .reply-btn:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .reply-item {
+            background: #F5F5F5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #28a745;
+        }
+
+        .reply-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        /* ===== 푸터 ===== */
+        footer {
+            background-color: #0052CC;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* ===== 모바일 반응형 CSS ===== */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .services-title {
+                font-size: 28px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-text h2 {
+                font-size: 24px;
+            }
+
+            .inquiry-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .login-container {
+                margin: 50px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero {
+                padding: 60px 15px;
+                min-height: 400px;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+
+            .services {
+                margin: 40px auto;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .inquiry {
+                padding: 40px 15px;
+            }
+
+            .inquiry h2 {
+                font-size: 24px;
+            }
+
+            .admin-dashboard {
+                padding: 0 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== 상단 네비게이션 ===== -->
+    <header>
+        <div class="header-container">
+            <div class="logo" onclick="goToHome()">🚀 NEXUS</div>
+            <!-- 일반 사용자 네비게이션 -->
+            <nav id="userNav">
+                <ul>
+                    <li><a onclick="goToHome()">회사소개</a></li>
+                    <li><a onclick="goToHome()">제품소개</a></li>
+                    <li><a onclick="goToHome()">오시는길</a></li>
+                    <li><a onclick="showPage('inquiry')">문의하기</a></li>
+                    <li><a onclick="showPage('login')" style="color: #FFD700; font-weight: bold;">관리자</a></li>
+                </ul>
+            </nav>
+            <!-- 관리자 로그인 상태 네비게이션 -->
+            <div id="adminNav" class="admin-links" style="display: none;">
+                <span class="admin-badge">👨‍💼 관리자</span>
+                <a onclick="showPage('dashboard')" class="nav-link">대시보드</a>
+                <button class="logout-btn" onclick="logout()">로그아웃</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 홈페이지 ===== -->
+    <div id="homePage" class="page active">
+        <!-- 메인 히어로 섹션 -->
+        <section class="hero">
+            <h1>미래 기술의 선두주자</h1>
+            <p>NEXUS Technologies와 함께 디지털 혁신을 경험하세요.
+               최고의 IT 솔루션으로 당신의 비즈니스를 한 단계 업그레이드합니다.</p>
+            <button class="cta-button" onclick="showPage('inquiry')">문의하기</button>
+        </section>
+
+        <!-- 주요 서비스 섹션 -->
+        <section class="services">
+            <h2 class="services-title">우리의 주요 서비스</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>클라우드 솔루션</h3>
+                    <p>안전하고 확장성 있는 클라우드 인프라로
+                       귀사의 데이터를 효율적으로 관리하세요.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>사이버 보안</h3>
+                    <p>최첨단 보안 기술로 귀사의 중요한 정보를
+                       완벽하게 보호합니다.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>데이터 분석</h3>
+                    <p>빅데이터 분석 기술을 통해
+                       비즈니스 인사이트를 획득하세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 회사 소개 섹션 -->
+        <section class="about">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>NEXUS Technologies 소개</h2>
+                    <p>2015년 설립된 NEXUS Technologies는
+                       IT 혁신과 디지털 변환의 최전선에서 활동하고 있습니다.</p>
+                    <p>우리는 500개 이상의 기업 고객을 지원하며,
+                       지속적인 기술 개발과 혁신을 추구하고 있습니다.</p>
+                    <p>당신의 비즈니스 성장을 위해 NEXUS가 최고의 파트너가 되겠습니다.</p>
+                </div>
+                <div class="about-image">
+                    🏢 NEXUS 사무실
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== 문의하기 페이지 ===== -->
+    <div id="inquiryPage" class="page">
+        <section class="inquiry">
+            <div class="inquiry-container">
+                <h2>📧 문의하기</h2>
+                <div class="success-message" id="successMessage">
+                    ✅ 문의가 성공적으로 접수되었습니다. 감사합니다!
+                </div>
+                <form id="inquiryForm">
+                    <!-- 이름 입력 -->
+                    <div class="form-group">
+                        <label for="name">이름 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <!-- 이메일 입력 -->
+                    <div class="form-group">
+                        <label for="email">이메일 *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <!-- 문의 유형 선택 -->
+                    <div class="form-group">
+                        <label for="inquiry-type">문의 유형</label>
+                        <select id="inquiry-type" name="inquiry-type">
+                            <option value="">선택해주세요</option>
+                            <option value="제품문의">제품문의</option>
+                            <option value="서비스문의">서비스 문의</option>
+                            <option value="제휴문의">제휴문의</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+
+                    <!-- 문의 제목 입력 -->
+                    <div class="form-group">
+                        <label for="title">문의 제목 *</label>
+                        <input type="text" id="title" name="title" required placeholder="문의 제목을 입력해주세요">
+                    </div>
+
+                    <!-- 문의 내용 입력 -->
+                    <div class="form-group">
+                        <label for="content">문의 내용 *</label>
+                        <textarea id="content" name="content" required
+                                  placeholder="문의 내용을 상세히 입력해주세요..."></textarea>
+                    </div>
+
+                    <!-- 제출 버튼 -->
+                    <button type="submit" class="submit-btn">문의 보내기</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- ===== 관리자 로그인 페이지 ===== -->
+    <div id="loginPage" class="page">
+        <div class="login-container">
+            <h2>👨‍💼 관리자 로그인</h2>
+            <div class="login-error" id="loginError">
+                아이디 또는 비밀번호가 잘못되었습니다.
+            </div>
+            <form id="loginForm" class="login-form">
+                <input type="text" id="loginId" placeholder="아이디" required>
+                <input type="password" id="loginPassword" placeholder="비밀번호" required>
+                <button type="submit" class="login-btn">로그인</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px; color: #999; font-size: 12px;">
+                기본 아이디: admin | 기본 비밀번호: 1234
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== 관리자 대시보드 ===== -->
+    <div id="dashboardPage" class="page">
+        <div class="admin-dashboard">
+            <h2 class="dashboard-title">📊 관리자 대시보드</h2>
+
+            <!-- 문의 목록 -->
+            <div id="inquiryListView">
+                <div class="inquiry-list" id="inquiryListContainer">
+                    <div class="empty-message">문의 내용이 없습니다.</div>
+                </div>
+            </div>
+
+            <!-- 문의 상세 페이지 -->
+            <div id="inquiryDetailView" style="display: none;">
+                <button class="back-btn" onclick="backToList()">← 목록으로 돌아가기</button>
+
+                <div class="inquiry-detail" id="detailContent">
+                    <!-- 동적으로 로드될 내용 -->
+                </div>
+
+                <div class="reply-form">
+                    <h3>✉️ 답변 보내기</h3>
+                    <form id="replyForm">
+                        <textarea class="reply-textarea" id="replyContent" placeholder="답변 내용을 입력해주세요..." required></textarea>
+                        <button type="submit" class="reply-btn">답변 전송</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 푸터 ===== -->
+    <footer>
+        <p><strong>NEXUS Technologies</strong></p>
+        <p>📧 문의: contact@nexus-tech.com</p>
+        <p>📞 전화: 02-1234-5678</p>
+        <p>📍 주소: 서울시 강남구 테헤란로 100</p>
+        <p>&copy; 2026 NEXUS Technologies. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ===== 로컬스토리지 초기화 =====
+        function initializeStorage() {
+            if (!localStorage.getItem('inquiries')) {
+                localStorage.setItem('inquiries', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('adminPassword')) {
+                localStorage.setItem('adminPassword', '1234'); // 기본 비밀번호
+            }
+        }
+
+        // ===== 페이지 전환 함수 =====
+        function showPage(pageId) {
+            // 모든 페이지 숨기기
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 선택한 페이지만 표시
+            const page = document.getElementById(pageId + 'Page');
+            if (page) {
+                page.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+
+            // 페이지별 초기화
+            if (pageId === 'inquiry') {
+                document.getElementById('inquiryForm').reset();
+                document.getElementById('successMessage').style.display = 'none';
+            } else if (pageId === 'dashboard') {
+                loadInquiries();
+            }
+        }
+
+        // ===== 홈으로 가기 =====
+        function goToHome() {
+            showPage('home');
+        }
+
+        // ===== 로그인 처리 =====
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('loginId').value;
+            const password = document.getElementById('loginPassword').value;
+            const adminPassword = localStorage.getItem('adminPassword');
+
+            if (id === 'admin' && password === adminPassword) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                updateNavigation();
+                showPage('dashboard');
+                document.getElementById('loginError').style.display = 'none';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+
+        // ===== 로그아웃 처리 =====
+        function logout() {
+            localStorage.setItem('adminLoggedIn', 'false');
+            updateNavigation();
+            showPage('home');
+        }
+
+        // ===== 네비게이션 업데이트 =====
+        function updateNavigation() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            const userNav = document.getElementById('userNav');
+            const adminNav = document.getElementById('adminNav');
+
+            if (isLoggedIn) {
+                userNav.style.display = 'none';
+                adminNav.style.display = 'flex';
+            } else {
+                userNav.style.display = 'flex';
+                adminNav.style.display = 'none';
+            }
+        }
+
+        // ===== 문의 양식 제출 =====
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // 폼 데이터 수집
+            const inquiry = {
+                id: Date.now(),
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                type: document.getElementById('inquiry-type').value,
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                date: new Date().toLocaleString('ko-KR'),
+                replies: []
+            };
+
+            // 로컬스토리지에 저장
+            let inquiries = JSON.parse(localStorage.getItem('inquiries'));
+            inquiries.push(inquiry);
+            localStorage.setItem('inquiries', JSON.stringify(inquiries));
+
+            // 성공 메시지 표시
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+
+            // 2초 후 홈페이지로 이동
+            setTimeout(() => {
+                showPage('home');
+            }, 2000);
+        });
+
+        // ===== 문의 목록 로드 =====
+        let currentInquiryId = null;
+
+        function loadInquiries() {
+            const inquiries = JSON.parse(localStorage.getItem('inquiries'));
+            const listContainer = document.getElementById('inquiryListContainer');
+
+            if (inquiries.length === 0) {
+                listContainer.innerHTML = '<div class="empty-message">문의 내용이 없습니다.</div>';
+                return;
+            }
+
+            // 최신순으로 정렬
+            inquiries.reverse();
+
+            listContainer.innerHTML = '';
+            inquiries.forEach(inquiry => {
+                const html = `
+                    <div class="inquiry-item" onclick="showInquiryDetail(${inquiry.id})">
+                        <div class="inquiry-header">
+                            <div class="inquiry-title">${escapeHtml(inquiry.title)}</div>
+                            <div class="inquiry-date">${inquiry.date}</div>
+                        </div>
+                        <div class="inquiry-info">
+                            👤 ${escapeHtml(inquiry.name)} | 📧 ${escapeHtml(inquiry.email)} | 📌 ${escapeHtml(inquiry.type)}
+                        </div>
+                        <div class="inquiry-preview">${escapeHtml(inquiry.content)}</div>
+                    </div>
+                `;
+                listContainer.innerHTML += html;
+            });
+        }
+
+        // ===== 문의 상세 보기 =====
+        function showInquiryDetail(inquiryId) {
+            currentInquiryId = inquiryId;
+            const inquiries = JSON.parse(localStorage.getItem('inquiries'));
+            const inquiry = inquiries.find(q => q.id === inquiryId);
+
+            if (!inquiry) return;
+
+            const listView = document.getElementById('inquiryListView');
+            const detailView = document.getElementById('inquiryDetailView');
+            const detailContent = document.getElementById('detailContent');
+
+            // 상세 정보 HTML 생성
+            let repliesHtml = '';
+            if (inquiry.replies && inquiry.replies.length > 0) {
+                inquiry.replies.forEach(reply => {
+                    repliesHtml += `
+                        <div class="reply-item">
+                            <div class="reply-date">관리자 답변 - ${reply.date}</div>
+                            <div class="detail-content">${escapeHtml(reply.content)}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            detailContent.innerHTML = `
+                <div class="detail-section">
+                    <div class="detail-label">📌 제목</div>
+                    <div class="detail-content">${escapeHtml(inquiry.title)}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">👤 이름</div>
+                    <div class="detail-content">${escapeHtml(inquiry.name)}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">📧 이메일</div>
+                    <div class="detail-content">${escapeHtml(inquiry.email)}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">📂 문의 유형</div>
+                    <div class="detail-content">${escapeHtml(inquiry.type)}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">📅 접수 일시</div>
+                    <div class="detail-content">${inquiry.date}</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">📝 문의 내용</div>
+                    <div class="detail-content">${escapeHtml(inquiry.content)}</div>
+                </div>
+                ${repliesHtml ? '<hr style="margin: 20px 0; border: none; border-top: 1px solid #E0E0E0;">' + repliesHtml : ''}
+            `;
+
+            listView.style.display = 'none';
+            detailView.style.display = 'block';
+
+            // 답변 폼 리셋
+            document.getElementById('replyForm').reset();
+        }
+
+        // ===== 목록으로 돌아가기 =====
+        function backToList() {
+            currentInquiryId = null;
+            document.getElementById('inquiryListView').style.display = 'block';
+            document.getElementById('inquiryDetailView').style.display = 'none';
+            loadInquiries();
+        }
+
+        // ===== 답변 전송 =====
+        document.getElementById('replyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const replyContent = document.getElementById('replyContent').value;
+            const inquiries = JSON.parse(localStorage.getItem('inquiries'));
+            const inquiryIndex = inquiries.findIndex(q => q.id === currentInquiryId);
+
+            if (inquiryIndex !== -1) {
+                if (!inquiries[inquiryIndex].replies) {
+                    inquiries[inquiryIndex].replies = [];
+                }
+
+                inquiries[inquiryIndex].replies.push({
+                    content: replyContent,
+                    date: new Date().toLocaleString('ko-KR')
+                });
+
+                localStorage.setItem('inquiries', JSON.stringify(inquiries));
+                showInquiryDetail(currentInquiryId);
+                alert('✅ 답변이 성공적으로 전송되었습니다!');
+            }
+        });
+
+        // ===== XSS 방지 함수 =====
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // ===== 초기화 =====
+        initializeStorage();
+        updateNavigation();
+    </script>
+</body>
+</html>
+
+</body></html>
